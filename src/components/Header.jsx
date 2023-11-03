@@ -1,24 +1,24 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-// import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import SearchContext from "../context/useContext";
-import { Link } from "react-router-dom";
-import Login from "../pages/Login";
-// import { Link, useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import SearchResult from "./SearchResult";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getMe, logout } from "../redux/actions/authActions";
+import { searchMovies } from "../redux/actions/postActions";
 
 const Header = () => {
-  const { handleSearch, searchData, setSearchData } = useContext(SearchContext);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
+  const handleSearch = () => {
+    dispatch(searchMovies(search));
+  };
+
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if(token){
-      setIsLoggedIn(true);
-    }
-  }, []);
+    dispatch(getMe(null, null, null));
+  }, [dispatch, searchMovies]);
 
   return (
     <nav className="navbar mb-5">
@@ -33,8 +33,8 @@ const Header = () => {
             className="bg-transparent border-0 text-white search-input w-100 "
             type="text"
             placeholder="What do you want to watch?"
-            value={searchData}
-            onChange={(e) => setSearchData(e.target.value)}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <Link to={"/searchresult"}>
             <BsSearch
@@ -50,11 +50,14 @@ const Header = () => {
                 className="btn btn-outline-danger rounded-5 py-2 px-4"
                 type="submit"
               >
-                <Link className="text-white text-decoration-none" onClick={() => {
-                  localStorage.removeItem('token');
-                  setIsLoggedIn(false);
-                  window.location.reload();
-                }}>Logout</Link>
+                <Link
+                  className="text-white text-decoration-none"
+                  onClick={() => {
+                    dispatch(logout(navigate));
+                  }}
+                >
+                  Logout
+                </Link>
               </button>
             </>
           ) : (

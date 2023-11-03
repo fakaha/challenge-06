@@ -1,15 +1,15 @@
-*{
+* {
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
   /* text-align: center; */
 }
 
-body{
+body {
   background-color: #fff;
 }
 
-.myBg{
+.myBg {
   background-image: url(assets/doctorStrange1.jpg);
   /* background-color: black; */
   background-repeat: no-repeat;
@@ -17,26 +17,26 @@ body{
   height: 100vh;
 }
 
-.logo{
+.logo {
   cursor: pointer;
 }
 
-.search-input::placeholder{
+.search-input::placeholder {
   color: white;
 }
 
-.searchButton:hover{
+.searchButton:hover {
   cursor: pointer;
 }
 
-.movie{
+.movie {
   list-style: none;
 }
 
-.movie:hover{
+.movie:hover {
   cursor: pointer;
 }
 
-.navbar{
-  background-color: rgba(0, 0, 0, 0.7);;
+.navbar {
+  background-color: rgba(0, 0, 0, 0.7);
 }

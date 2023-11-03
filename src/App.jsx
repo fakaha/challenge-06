@@ -6,12 +6,14 @@ import SearchResult from "./components/SearchResult";
 import Detail from "./components/Detail";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 function App() {
   return (
+    <Provider store={store}>
     <GoogleOAuthProvider clientId={'659120375831-9rsqe4vmbu48oa81s1rk5t9tamo2uv2h.apps.googleusercontent.com'}>
     <Router>
-      {/* <Header/> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/searchresult" element={<SearchResult />} />
@@ -21,6 +23,7 @@ function App() {
       </Routes>
     </Router>
     </GoogleOAuthProvider>
+    </Provider>
   );
 }
 

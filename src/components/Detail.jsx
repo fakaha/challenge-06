@@ -1,34 +1,20 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "./Header";
 import { AiOutlineStar } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { getPostDetails } from "../redux/actions/postActions";
 
 const Detail = () => {
-  const [movie, setMovie] = useState("");
+  const dispatch = useDispatch();
   const { id } = useParams();
 
-  const fetchData = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(
-        `https://shy-cloud-3319.fly.dev/api/v1/movie/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const data = response.data.data;
-      setMovie(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const { postDetails } = useSelector((state) => state.post);
 
+  console.log(postDetails);
   useEffect(() => {
-    fetchData();
-  }, []);
+    dispatch(getPostDetails(id));
+  }, [dispatch, id]);
 
   return (
     <div className="text-start px-0 mb-3">
@@ -36,18 +22,23 @@ const Detail = () => {
       <div className="px-3 d-flex gap-2">
         <img
           className="col-5"
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500${postDetails?.poster_path}`}
           alt=""
         />
         <div className="content-detail col-7">
-          <h1 style={{ fontSize: "50px" }}>{movie.title}</h1>
+          {postDetails && postDetails.title ? (
+            <h1 style={{ fontSize: "50px" }}>{postDetails?.title}</h1>
+          ) : (
+            <h1>Data Tidak Ditemukan</h1>
+          )}
+
           <p className="mt-3" style={{ fontStyle: "italic", fontSize: "20px" }}>
-            {movie.release_date}
+            {postDetails?.release_date}
           </p>
-          <p style={{ fontSize: "25px" }}>{movie.overview}</p>
+          <p style={{ fontSize: "25px" }}>{postDetails?.overview}</p>
           <p style={{ fontSize: "22px" }}>
             <AiOutlineStar className="text-warning" />
-            {movie.vote_average}
+            {postDetails?.vote_average}
           </p>
         </div>
       </div>
