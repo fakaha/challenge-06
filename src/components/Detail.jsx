@@ -19,15 +19,15 @@ const Detail = () => {
   return (
     <div className="text-start px-0 mb-3">
       <Header />
-      <div className="px-3 d-flex gap-2">
+      <div className="px-3 d-flex gap-2 flex-column flex-md-row">
         <img
-          className="col-5"
+          className="col-12 col-md-5 h-100"
           src={`https://image.tmdb.org/t/p/w500${postDetails?.poster_path}`}
           alt=""
         />
-        <div className="content-detail col-7">
+        <div className="content-detail col-12 col-md-7">
           {postDetails && postDetails.title ? (
-            <h1 style={{ fontSize: "50px" }}>{postDetails?.title}</h1>
+            <h1 style={{ fontSize: "" }}>{postDetails?.title}</h1>
           ) : (
             <h1>Data Tidak Ditemukan</h1>
           )}

@@ -43,7 +43,7 @@ const Home = () => {
       <div className="list-movies d-flex gap-5 flex-wrap justify-content-center">
         {token ? (
           posts.map((posts, index) => (
-            <li className="movie col-lg-2 m-0 p-0 w-75 d-flex justify-content-center" key={index}>
+            <li className="movie m-0 p-0" key={index}>
               <Link className="text-decoration-none" to={`/detail/${posts.id}`}>
                 <img
                   className="w-100 rounded rounded-4"
