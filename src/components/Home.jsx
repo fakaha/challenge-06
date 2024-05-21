@@ -22,7 +22,7 @@ const Home = () => {
       <div className="myBg px-0">
         <Header />
         {token ? (
-          <div className="hero px-3" style={{ height: "80vh" }}>
+          <div className="hero px-3" style={{ height: "" }}>
             <h1 className="text-white w-50 ms-0 mb-4">
               {posts && posts.length > 0 ? posts[13].title : "No Data..."}
             </h1>
@@ -43,7 +43,7 @@ const Home = () => {
       <div className="list-movies d-flex gap-5 flex-wrap justify-content-center">
         {token ? (
           posts.map((posts, index) => (
-            <li className="movie col-lg-2 m-0 p-0" key={index}>
+            <li className="movie col-lg-2 m-0 p-0 w-75 d-flex justify-content-center" key={index}>
               <Link className="text-decoration-none" to={`/detail/${posts.id}`}>
                 <img
                   className="w-100 rounded rounded-4"

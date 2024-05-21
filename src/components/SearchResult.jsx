@@ -12,7 +12,7 @@ const SearchResult = () => {
   return (
     <div>
       <Header />
-      <div className="container-data row px-3">
+      <div className="container-data row px-3 w-100">
         {searchResults && searchResults.length > 0 ? (
           searchResults.map((item, i) => (
             <div key={i} className="col-6 mb-5">
@@ -20,6 +20,7 @@ const SearchResult = () => {
               <img
                 src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                 alt=""
+                className="w-100"
               />
             </div>
           ))

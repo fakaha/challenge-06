@@ -13,12 +13,16 @@ body {
   background-image: url(assets/doctorStrange1.jpg);
   /* background-color: black; */
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100vw;
   height: 100vh;
 }
 
 .logo {
   cursor: pointer;
+}
+
+.search{
+  width: 50%;
 }
 
 .search-input::placeholder {
@@ -39,4 +43,24 @@ body {
 
 .navbar {
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+@media screen and (max-width: 768px){
+  .myBg{
+    height: 100%;
+  }
+
+  .logo{
+    order: 1;
+  }
+
+  .search{
+    order: 3;
+    width: 90%;
+  }
+
+  .isLogged{
+    order: 2;
+  }
+
 }
